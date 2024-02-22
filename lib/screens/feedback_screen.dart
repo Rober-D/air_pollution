@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:work/colors.dart';
 import '../shared/widgets/air_quality.dart';
+import '../state management/gases_provider.dart';
 
 class FeedbackScreen extends StatefulWidget {
   const FeedbackScreen({super.key});
@@ -12,10 +14,10 @@ class FeedbackScreen extends StatefulWidget {
 }
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
-  int check = 0;
+  //int check = 2;
 
   Image co2 = const Image(
-    image: AssetImage("assets/temp.png"),
+    image: AssetImage("assets/co2.png"),
   );
   Image temperature = const Image(
     image: AssetImage("assets/temp.png"),
@@ -49,6 +51,10 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    GasesProvider airData = Provider.of<GasesProvider>(context);
+    int check = airData.checkQuality();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor:

@@ -10,27 +10,30 @@ class AirQuality extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          //const SizedBox(width: 20,),
-          Container(decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            color: Colors.grey[200],
-          ),
-          child: const Image(image: AssetImage("assets/co2.png"),),),
-          const SizedBox(width: 50,),
-          Column(
-            children:[
-              Text("${gas}",style:const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-              const SizedBox(),
-              Text("${num} ${x}",style:TextStyle(fontSize: 16),),
-            ],
-          ),
-        ],
+    return InkWell(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            //const SizedBox(width: 20,),
+            Container(decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
+              color: Colors.grey[200],
+            ),
+            child: image),
+            const SizedBox(width: 50,),
+            Column(
+              children:[
+                Text("${gas}",style:const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                const SizedBox(),
+                Text("${num} ${x}",style:TextStyle(fontSize: 16),),
+              ],
+            ),
+          ],
+        ),
       ),
+      onTap: (){print("Bye Bye");},
     );
   }
 }

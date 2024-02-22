@@ -12,7 +12,7 @@ class TestModel extends StatelessWidget {
         future: MongoDB.get(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {

@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:work/routes.dart';
 import 'package:work/screens/details_screen.dart';
 import 'package:work/screens/feedback_screen.dart';
 import 'package:work/screens/home_screen.dart';
 import 'package:work/screens/start_screen.dart';
+import 'package:work/state%20management/gases_provider.dart';
 import 'database/mongodb_helper.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDB.connect();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => GasesProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -28,4 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
