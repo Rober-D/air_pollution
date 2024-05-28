@@ -3,18 +3,40 @@ import 'package:work/database/models/gases_model.dart';
 
 class GasesProvider extends ChangeNotifier{
 
-  GasesModel gases = GasesModel(co_2: 0.0, temperature: 0.0, humidity: 0.0);
+  GasesModel gases = GasesModel(co_2: 0.0, co: 0.0, h2so4: 0.0);
+  // index 0 : MQ135_Gas
+  // index 1 : MQ7_CO2
+  List<int> gasesFromSensors = [];
+  // index 0 : Temperature
+  // index 1 : Humidity
+  List<int> temperatureAndHumidity = [];
+  bool check = false;
 
-  void readGases(List<Map<String,dynamic>>gasesList){
-    gases.co_2 = gasesList[gasesList.length-1]["Co2"];
-    gases.temperature = gasesList[gasesList.length-1]["Temperature"];
-    gases.humidity = gasesList[gasesList.length-1]["Humidity"];
+  void getChecked(){
+    check = true;
+    notifyListeners();
+  }
+
+  void addTemperatureAndHumidity(int read){
+    if(temperatureAndHumidity.length >= 2){
+      temperatureAndHumidity.clear();
+    }
+    temperatureAndHumidity.add(read);
+    notifyListeners();
+  }
+
+  void addGas(int read){
+    if(gasesFromSensors.length >= 2){
+      gasesFromSensors.clear();
+    }
+    gasesFromSensors.add(read);
+    notifyListeners();
   }
 
   int checkQuality(){
-    if(gases.co_2 > 1000){
+    if(gasesFromSensors[1] > 1000){
       return 0;
-    }else if(gases.co_2 > 400 && gases.co_2 < 1000){
+    }else if(gasesFromSensors[1] > 400 && gasesFromSensors[1] < 1000){
       return 1;
     }else{
       return 2;

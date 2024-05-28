@@ -5,7 +5,7 @@ class AirQuality extends StatelessWidget {
   AirQuality({super.key,required this.image,required this.gas,required this.num,required this.x});
   Image? image;
   String? gas;
-  double? num;
+  var num;
   String x;
 
   @override

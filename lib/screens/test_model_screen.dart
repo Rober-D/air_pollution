@@ -1,50 +1,35 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:work/database/mongodb_helper.dart';
 
-class TestModel extends StatelessWidget {
-  const TestModel({super.key});
+class TestScreen extends StatelessWidget {
+  const TestScreen({super.key});
+
+  static const String routeName = "TestScreen";
 
   @override
   Widget build(BuildContext context) {
+    Query mqGas = FirebaseDatabase.instance.ref().child('MQ135_Gas').limitToLast(1);
     return Scaffold(
       body: SafeArea(
-          child: FutureBuilder(
-        future: MongoDB.get(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
+        child: FirebaseAnimatedList(
+          query: mqGas,
+          itemBuilder: (BuildContext context, DataSnapshot snapshot,
+              Animation<double> animation, int index) {
+            int dht = snapshot.value as int;
+            //dht['key'] = snapshot.key;
+            return Column(
+              children: [
+                Text("DHT : ${dht}"),
+                SizedBox(height: 20,),
+                Text("DHT : ${dht}"),
+                SizedBox(height: 20,),
+              ],
             );
-          } else {
-            if (snapshot.hasData) {
-              var dataLength = snapshot.data.length;
-              return ListView.builder(
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    Text("${snapshot.data[index]["firstName"]}"),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text("${snapshot.data[index]["lastName"]}"),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text("${snapshot.data[index]["address"]}"),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                ),
-                itemCount: snapshot.data.length,
-              );
-            } else {
-              return Center(
-                child: Text("No Data Available"),
-              );
-            }
-          }
-        },
-      )),
+          },
+        ),
+      ),
     );
   }
 }

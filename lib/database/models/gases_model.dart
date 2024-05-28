@@ -1,19 +1,19 @@
 class GasesModel {
   double co_2;
-  double temperature;
-  double humidity;
+  double co;
+  double h2so4;
 
   GasesModel(
-      {required this.co_2, required this.temperature, required this.humidity});
+      {required this.co_2, required this.co, required this.h2so4});
 
   factory GasesModel.fromJson(Map<String, dynamic> json) => GasesModel(
       co_2: json["Co2"],
-      temperature: json["Temperature"],
-      humidity: json["Humidity"]);
+      co: json["Temperature"],
+      h2so4: json["Humidity"]);
 
   Map<String,dynamic> toJson()=>{
   "Co2" : co_2,
-  "Temperature": temperature,
-  "Humidity": humidity
+  "Temperature": co,
+  "Humidity": h2so4
   };
 }

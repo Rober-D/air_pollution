@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "588666864848",
+    "firebase_url": "https://air-pollution123firebase-default-rtdb.firebaseio.com",
+    "project_id": "air-pollution123firebase",
+    "storage_bucket": "air-pollution123firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588666864848:android:74be81891c3ada0f920ad5",
+        "android_client_info": {
+          "package_name": "com.example.work"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd93ZE-OVwHjLIVtdMVNcvXil2SILAQLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

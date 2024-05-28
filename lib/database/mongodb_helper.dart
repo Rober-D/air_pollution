@@ -13,6 +13,7 @@ class MongoDB{
     inspect(db);
     userCollection = await db.collection(COLLECTION);
   }
+
   static Future<String> insert(TestModel testModel) async{
     try{
       var res = await userCollection.insertOne(testModel.toJson());
